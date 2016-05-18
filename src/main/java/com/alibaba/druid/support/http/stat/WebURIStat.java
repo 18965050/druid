@@ -15,15 +15,21 @@
  */
 package com.alibaba.druid.support.http.stat;
 
-import com.alibaba.druid.support.profile.ProfileStat;
+import static com.alibaba.druid.util.JdbcSqlStatUtils.get;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
-import static com.alibaba.druid.util.JdbcSqlStatUtils.get;
+import com.alibaba.druid.support.profile.ProfileStat;
 
+/**
+ * WebUri统计. 对应 /druid/weburi.html页面. <br /> 
+ * 注意: 此类不支持JMX,说明只能配置在Local应用中
+ * @author lvchenggang
+ *
+ */
 public class WebURIStat {
 
     private final String                               uri;
@@ -32,6 +38,10 @@ public class WebURIStat {
     private volatile int                               concurrentMax;
     private volatile long                              requestCount;
     private volatile long                              requestTimeNano;
+    
+    /**
+     * AtomicIntegerFieldUpdater用于对指定类的volatile字段进行原子更新
+     */
     final static AtomicIntegerFieldUpdater<WebURIStat> runningCountUpdater                 = AtomicIntegerFieldUpdater.newUpdater(WebURIStat.class,
                                                                                                                                   "runningCount");
     final static AtomicIntegerFieldUpdater<WebURIStat> concurrentMaxUpdater                = AtomicIntegerFieldUpdater.newUpdater(WebURIStat.class,

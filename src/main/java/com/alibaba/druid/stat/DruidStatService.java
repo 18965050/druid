@@ -44,6 +44,12 @@ import com.alibaba.druid.util.StringUtils;
  * 
  * @author sandzhang<sandzhangtoo@gmail.com>
  */
+
+/**
+ * 统计服务器. 用于通过JMX或Local方式获取统计数据
+ * @author lvchenggang
+ *
+ */
 public final class DruidStatService implements DruidStatServiceMBean {
 
     private final static Log              LOG                    = LogFactory.getLog(DruidStatService.class);

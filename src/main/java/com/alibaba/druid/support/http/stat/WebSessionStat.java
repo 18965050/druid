@@ -15,15 +15,20 @@
  */
 package com.alibaba.druid.support.http.stat;
 
-import com.alibaba.druid.support.logging.Log;
-import com.alibaba.druid.support.logging.LogFactory;
+import static com.alibaba.druid.util.JdbcSqlStatUtils.get;
 
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
-import static com.alibaba.druid.util.JdbcSqlStatUtils.get;
+import com.alibaba.druid.support.logging.Log;
+import com.alibaba.druid.support.logging.LogFactory;
 
+/**
+ * WebSession 统计. 对应 /druid/websession.html
+ * @author lvchenggang
+ *
+ */
 public class WebSessionStat {
 
     private final static Log                               LOG                                               = LogFactory.getLog(WebSessionStat.class);

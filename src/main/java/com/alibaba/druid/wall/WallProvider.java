@@ -47,6 +47,11 @@ import com.alibaba.druid.wall.violation.ErrorCode;
 import com.alibaba.druid.wall.violation.IllegalSQLObjectViolation;
 import com.alibaba.druid.wall.violation.SyntaxErrorViolation;
 
+/**
+ * 防火墙监控统计. 对应 /druid/wall.html. 不同数据源由其子类提供
+ * @author lvchenggang
+ *
+ */
 public abstract class WallProvider {
 
     private String                                        name;

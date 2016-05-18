@@ -1382,6 +1382,11 @@ public abstract class DruidAbstractDataSource extends WrapperAdapter implements 
         return conn;
     }
 
+    /**
+     * 创建物理连接
+     * @return
+     * @throws SQLException
+     */
     public Connection createPhysicalConnection() throws SQLException {
         String url = this.getUrl();
         Properties connectProperties = getConnectProperties();

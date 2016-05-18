@@ -68,6 +68,12 @@ import com.alibaba.druid.proxy.jdbc.StatementProxyImpl;
 /**
  * @author wenshao<szujobs@hotmail.com>
  */
+
+/**
+ * 过滤器链实现类. 每个方法的调用都会先通过链中的每个过滤器调用后,才进行真正的调用
+ * @author lvchenggang
+ *
+ */
 public class FilterChainImpl implements FilterChain {
 
     protected int                 pos = 0;

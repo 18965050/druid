@@ -21,6 +21,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * Spring Bean调用统计. 对应 /druid/spring.html
+ * @author lvchenggang
+ *
+ */
 public class SpringStat {
 
     private ConcurrentMap<SpringMethodInfo, SpringMethodStat> methodStats = new ConcurrentHashMap<SpringMethodInfo, SpringMethodStat>(16, 0.75f, 1);

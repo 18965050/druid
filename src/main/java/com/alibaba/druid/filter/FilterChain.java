@@ -55,6 +55,12 @@ import com.alibaba.druid.proxy.jdbc.StatementProxy;
 /**
  * @author wenshao<szujobs@hotmail.com>
  */
+
+/**
+ * 过滤器链
+ * @author lvchenggang
+ *
+ */
 public interface FilterChain {
 
     DataSourceProxy getDataSource();

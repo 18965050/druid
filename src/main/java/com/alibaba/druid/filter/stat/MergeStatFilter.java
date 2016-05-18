@@ -15,6 +15,11 @@
  */
 package com.alibaba.druid.filter.stat;
 
+/**
+ * Sql合并过滤器. 详见 https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatFilter
+ * @author lvchenggang
+ *
+ */
 public class MergeStatFilter extends StatFilter {
 
     public MergeStatFilter(){

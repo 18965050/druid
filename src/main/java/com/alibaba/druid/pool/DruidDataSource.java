@@ -159,6 +159,9 @@ public class DruidDataSource extends DruidAbstractDataSource
 
     protected JdbcDataSourceStat             dataSourceStat;
 
+    /**
+     * 合并多个DruidDataSource的监控数据
+     */
     private boolean                          useGlobalDataSourceStat = false;
 
     private boolean                          mbeanRegistered         = false;
@@ -506,6 +509,9 @@ public class DruidDataSource extends DruidAbstractDataSource
         this.connectProperties = properties;
     }
 
+    /**
+     * 初始化方法
+     */
     public void init() throws SQLException {
         if (inited) {
             return;
@@ -546,6 +552,9 @@ public class DruidDataSource extends DruidAbstractDataSource
                 this.dbType = JdbcUtils.getDbType(jdbcUrl, null);
             }
 
+            /**
+             * 过滤器初始化
+             */
             for (Filter filter : filters) {
                 filter.init(this);
             }
@@ -626,6 +635,9 @@ public class DruidDataSource extends DruidAbstractDataSource
 
             SQLException connectError = null;
 
+            /**
+             * 当initialSize>0时, 初始化数据库. 否则在createAndStartCreatorThread()方法中初始化连接
+             */
             try {
                 // init connections
                 for (int i = 0, size = getInitialSize(); i < size; ++i) {
@@ -651,6 +663,10 @@ public class DruidDataSource extends DruidAbstractDataSource
             initedLatch.await();
 
             initedTime = new Date();
+            
+            /**
+             * 注册JMX MBean. 这样当启动JMX时, 可进行远程调用
+             */
             registerMbean();
 
             if (connectError != null && poolingCount == 0) {
@@ -717,6 +733,17 @@ public class DruidDataSource extends DruidAbstractDataSource
      * load filters from SPI ServiceLoader
      * 
      * @see ServiceLoader
+     */
+    
+    /**
+     * <pre>
+     * JDK1.6中ServiceLoader 加载器.配置在META-INF/services目录下. 格式为:
+     * (1)文件名为 META-INF/services/接口全限定名
+     * (2)文件内容为接口实现类的全限定名
+     * (3)实现类要求有默认构造函数 
+     * 
+     * 这里的含义为以JDK SPI方式实现Filter接口且类由注解@AutoLoad(value=true情况下), 加载进filters中
+     * </pre>
      */
     private void initFromSPIServiceLoader() {
 

@@ -15,17 +15,6 @@
  */
 package com.alibaba.druid.filter;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.pool.DruidPooledConnection;
-import com.alibaba.druid.proxy.jdbc.CallableStatementProxy;
-import com.alibaba.druid.proxy.jdbc.ClobProxy;
-import com.alibaba.druid.proxy.jdbc.ConnectionProxy;
-import com.alibaba.druid.proxy.jdbc.DataSourceProxy;
-import com.alibaba.druid.proxy.jdbc.PreparedStatementProxy;
-import com.alibaba.druid.proxy.jdbc.ResultSetMetaDataProxy;
-import com.alibaba.druid.proxy.jdbc.ResultSetProxy;
-import com.alibaba.druid.proxy.jdbc.StatementProxy;
-
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
@@ -55,8 +44,32 @@ import java.sql.Wrapper;
 import java.util.Calendar;
 import java.util.Properties;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.pool.DruidPooledConnection;
+import com.alibaba.druid.proxy.jdbc.CallableStatementProxy;
+import com.alibaba.druid.proxy.jdbc.ClobProxy;
+import com.alibaba.druid.proxy.jdbc.ConnectionProxy;
+import com.alibaba.druid.proxy.jdbc.DataSourceProxy;
+import com.alibaba.druid.proxy.jdbc.PreparedStatementProxy;
+import com.alibaba.druid.proxy.jdbc.ResultSetMetaDataProxy;
+import com.alibaba.druid.proxy.jdbc.ResultSetProxy;
+import com.alibaba.druid.proxy.jdbc.StatementProxy;
+
 /**
  * @author wenshao<szujobs@hotmail.com>
+ */
+
+/**
+ * 过滤器. 
+ * <pre>
+ * 方法命名规则为: 类名_方法名
+ * 比如: callableStatement_getArray 表示拦截
+ * CallableStatment.getArray()方法
+ * 
+ * 另外, 注意参数都使用了自定义的Proxy对象. 比如Connection的为ConnectionProxy
+ * </pre>
+ * @author lvchenggang
+ *
  */
 public interface Filter extends Wrapper {
 

@@ -30,12 +30,23 @@ import com.alibaba.druid.support.logging.LogFactory;
 import com.alibaba.druid.util.JdbcUtils;
 import com.alibaba.druid.util.Utils;
 
+/**
+ * 过滤器管理器
+ * @author lvchenggang
+ *
+ */
 public class FilterManager {
 
     private final static Log                               LOG      = LogFactory.getLog(FilterManager.class);
 
+    /**
+     * 别名<==>过滤器类名
+     */
     private static final ConcurrentHashMap<String, String> aliasMap = new ConcurrentHashMap<String, String>(16, 0.75f, 1);
 
+    /**
+     * 从配置文件(META-INF/druid-filter.properties,包括jar包和应用的)加载 
+     */
     static {
         try {
             Properties filterProperties = loadFilterConfig();
@@ -88,6 +99,12 @@ public class FilterManager {
         }
     }
 
+    /**
+     * 加载过滤器并放入filters
+     * @param filters
+     * @param filterName
+     * @throws SQLException
+     */
     public static void loadFilter(List<Filter> filters, String filterName) throws SQLException {
         if (filterName.length() == 0) {
             return;

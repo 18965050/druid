@@ -55,6 +55,12 @@ import com.alibaba.druid.support.profile.Profiler;
 /**
  * @author wenshao<szujobs@hotmail.com>
  */
+
+/**
+ * 统计过滤器. 针对Sql的各种统计
+ * @author lvchenggang
+ *
+ */
 public class StatFilter extends FilterEventAdapter implements StatFilterMBean {
 
     private final static Log          LOG                        = LogFactory.getLog(StatFilter.class);

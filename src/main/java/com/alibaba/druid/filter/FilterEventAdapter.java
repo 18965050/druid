@@ -27,6 +27,12 @@ import com.alibaba.druid.proxy.jdbc.StatementProxy;
 /**
  * @author wenshao<szujobs@hotmail.com>
  */
+
+/**
+ * 除了Filter接口的方法外, 添加了一些事件拦截方法.用于执行统计.这些新增方法一般以Before或After结尾  
+ * @author lvchenggang
+ *
+ */
 public abstract class FilterEventAdapter extends FilterAdapter {
 
     public FilterEventAdapter(){
